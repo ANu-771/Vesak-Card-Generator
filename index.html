@@ -36,48 +36,98 @@
                 
                 <div class="input-group">
                     <label for="to-input">To:</label>
-                    <input type="text" id="to-input" placeholder="Recipient's Name" autocomplete="off">
+                    <div class="animated-input-container">
+                        <div class="glow"></div>
+                        <div class="darkBorderBg"></div>
+                        <div class="border"></div>
+                        <div class="white"></div>
+                        <input type="text" id="to-input" placeholder="Recipient's Name" autocomplete="off">
+                    </div>
                 </div>
 
                 <div class="input-group">
                     <label for="from-input">From:</label>
-                    <input type="text" id="from-input" placeholder="Your Name" autocomplete="off">
+                    <div class="animated-input-container">
+                        <div class="glow"></div>
+                        <div class="darkBorderBg"></div>
+                        <div class="border"></div>
+                        <div class="white"></div>
+                        <input type="text" id="from-input" placeholder="Your Name" autocomplete="off">
+                    </div>
                 </div>
 
                 <div class="input-group">
                     <label for="quote-select">Select Quote:</label>
-                    <select id="quote-select">
-                        <option value="May the teachings of the Buddha guide you and bless you with peace, joy, and prosperity.">English - Peace, Joy, and Prosperity</option>
-                        <option value="ලෝභ, දෝෂ, මෝහ දුරලා, මෙත් සිතින් ලොව දිනන වෙසක් මංගල්යයක් වේවා!">Sinhala - ලෝභ, දෝෂ, මෝහ දුරලා...</option>
-                        <option value="බුදු දහමේ ආලෝකයෙන් ඔබේ සිත් සතන් සුවපත් වන, ශාන්තිය උදාවන සුබ වෙසක් දිනයක් වේවා!">Sinhala - බුදු දහමේ ආලෝකයෙන්...</option>
-                        <option value="custom">Type your own custom quote...</option>
-                    </select>
+                    <div class="animated-input-container">
+                        <div class="glow"></div>
+                        <div class="darkBorderBg"></div>
+                        <div class="border"></div>
+                        <div class="white"></div>
+                        <select id="quote-select">
+                            <option value="May the teachings of the Buddha guide you and bless you with peace, joy, and prosperity.">English - Peace, Joy, and Prosperity</option>
+                            <option value="ලෝභ, දෝෂ, මෝහ දුරලා, මෙත් සිතින් ලොව දිනන වෙසක් මංගල්යයක් වේවා!">Sinhala - ලෝභ, දෝෂ, මෝහ දුරලා...</option>
+                            <option value="බුදු දහමේ ආලෝකයෙන් ඔබේ සිත් සතන් සුවපත් වන, ශාන්තිය උදාවන සුබ වෙසක් දිනයක් වේවා!">Sinhala - බුදු දහමේ ආලෝකයෙන්...</option>
+                            <option value="custom">Type your own custom quote...</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="input-group" id="custom-quote-group" style="display: none; margin-top: -0.5rem;">
-                    <textarea id="custom-quote-input" rows="3" placeholder="Enter your custom wish..."></textarea>
+                    <div class="animated-input-container">
+                        <div class="glow"></div>
+                        <div class="darkBorderBg"></div>
+                        <div class="border"></div>
+                        <div class="white"></div>
+                        <textarea id="custom-quote-input" rows="3" placeholder="Enter your custom wish..."></textarea>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="orientation-select">Card Orientation:</label>
+                    <div class="animated-input-container">
+                        <div class="glow"></div>
+                        <div class="darkBorderBg"></div>
+                        <div class="border"></div>
+                        <div class="white"></div>
+                        <select id="orientation-select">
+                            <option value="portrait">Portrait (Vertical)</option>
+                            <option value="landscape">Landscape (Horizontal)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <h2>Select Template</h2>
-                <div class="template-grid">
-                    <button class="template-btn active" data-bg="assets/istockphoto-2148925188-612x612.jpg" data-label="Template 1">
-                        <img src="assets/istockphoto-2148925188-612x612.jpg" alt="Template 1">
-                    </button>
-                    <button class="template-btn" data-bg="assets/istockphoto-2148925189-612x612.jpg" data-label="Template 2">
-                        <img src="assets/istockphoto-2148925189-612x612.jpg" alt="Template 2">
-                    </button>
-                    <button class="template-btn" data-bg="assets/istockphoto-2148925201-612x612.jpg" data-label="Template 3">
-                        <img src="assets/istockphoto-2148925201-612x612.jpg" alt="Template 3">
-                    </button>
-                    <button class="template-btn" data-bg="assets/istockphoto-2148925211-612x612.jpg" data-label="Template 4">
-                        <img src="assets/istockphoto-2148925211-612x612.jpg" alt="Template 4">
-                    </button>
-                    <button class="template-btn" data-bg="assets/istockphoto-2148925212-612x612.jpg" data-label="Template 5">
-                        <img src="assets/istockphoto-2148925212-612x612.jpg" alt="Template 5">
-                    </button>
-                    <button class="template-btn" data-bg="assets/istockphoto-2148925221-612x612.jpg" data-label="Template 6">
-                        <img src="assets/istockphoto-2148925221-612x612.jpg" alt="Template 6">
-                    </button>
-                </div>
+                <ul class="template-grid">
+                    <li>
+                        <div class="details template-btn active" data-bg="assets/istockphoto-2148925188-612x612.jpg" data-label="Template 1">
+                            <img src="assets/istockphoto-2148925188-612x612.jpg" alt="Template 1">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="details template-btn" data-bg="assets/istockphoto-2148925189-612x612.jpg" data-label="Template 2">
+                            <img src="assets/istockphoto-2148925189-612x612.jpg" alt="Template 2">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="details template-btn" data-bg="assets/istockphoto-2148925201-612x612.jpg" data-label="Template 3">
+                            <img src="assets/istockphoto-2148925201-612x612.jpg" alt="Template 3">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="details template-btn" data-bg="assets/istockphoto-2148925211-612x612.jpg" data-label="Template 4">
+                            <img src="assets/istockphoto-2148925211-612x612.jpg" alt="Template 4">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="details template-btn" data-bg="assets/istockphoto-2148925212-612x612.jpg" data-label="Template 5">
+                            <img src="assets/istockphoto-2148925212-612x612.jpg" alt="Template 5">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="details template-btn" data-bg="assets/istockphoto-2148925221-612x612.jpg" data-label="Template 6">
+                            <img src="assets/istockphoto-2148925221-612x612.jpg" alt="Template 6">
+                        </div>
+                    </li>
+                </ul>
 
                 <div class="action-buttons">
                     <button id="download-btn" class="primary-btn">Download Card</button>

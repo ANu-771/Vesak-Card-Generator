@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const customQuoteGroup = document.getElementById('custom-quote-group');
     const customQuoteInput = document.getElementById('custom-quote-input');
     const previewQuote = document.getElementById('preview-quote');
+    const orientationSelect = document.getElementById('orientation-select');
 
     // 2. Real-Time Text Updating logic
     toInput.addEventListener('input', (e) => {
@@ -57,7 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Download Functionality using html2canvas
+    // 4. Orientation Selection logic
+    orientationSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'landscape') {
+            cardPreview.classList.add('landscape');
+        } else {
+            cardPreview.classList.remove('landscape');
+        }
+    });
+
+    // 5. Download Functionality using html2canvas
     downloadBtn.addEventListener('click', () => {
         // Change button state to indicate processing
         const originalText = downloadBtn.textContent;
