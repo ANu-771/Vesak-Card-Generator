@@ -74,17 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadBtn.textContent = 'Generating Image...';
         downloadBtn.disabled = true;
 
+        // Temporarily remove border-radius to prevent white corner artifacts on export
+        const originalBorderRadius = cardPreview.style.borderRadius;
+        cardPreview.style.borderRadius = '0';
+
         // html2canvas configuration settings
         const config = {
-            scale: 2, // 2x scale for higher resolution download quality
+            scale: 3, // 3x scale for much higher resolution download quality
             useCORS: true, // Crucial for loading images across different domains
             allowTaint: false,
-            backgroundColor: null, // Transparent background to preserve rounded corners
+            backgroundColor: null, 
             logging: false
         };
 
         // Capture the 'card-preview' div
         html2canvas(cardPreview, config).then(canvas => {
+            cardPreview.style.borderRadius = originalBorderRadius; // Restore border-radius
+            
             // Convert the canvas data to a high-quality PNG image Data URL
             const imgData = canvas.toDataURL('image/png', 1.0);
             
@@ -102,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadBtn.textContent = originalText;
             downloadBtn.disabled = false;
         }).catch(err => {
+            cardPreview.style.borderRadius = originalBorderRadius; // Restore border-radius
             console.error('Error generating image with html2canvas:', err);
             // Show alert and provide context regarding local files
             alert('There was an error generating your card.\n\nNote: If you are using local images and opening this file directly (file://), your browser might block the download for security reasons. Please try using a local web server (like VS Code Live Server).');
@@ -118,8 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         shareBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
         shareBtn.disabled = true;
 
+        const originalBorderRadius = cardPreview.style.borderRadius;
+        cardPreview.style.borderRadius = '0';
+
         const config = {
-            scale: 2,
+            scale: 3, // 3x scale for higher quality sharing
             useCORS: true,
             allowTaint: false,
             backgroundColor: null,
@@ -127,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         html2canvas(cardPreview, config).then(canvas => {
+            cardPreview.style.borderRadius = originalBorderRadius; // Restore border-radius
             canvas.toBlob((blob) => {
                 if (!blob) {
                     throw new Error('Canvas to Blob conversion failed.');
@@ -151,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 'image/png', 1.0);
         }).catch(err => {
+            cardPreview.style.borderRadius = originalBorderRadius; // Restore border-radius
             console.error('Error generating image for share:', err);
             fallbackShare();
             resetShareBtn(shareBtn, originalText);
