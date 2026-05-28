@@ -203,6 +203,18 @@ header p {
     box-shadow: 0 0 15px rgba(252, 163, 17, 0.6);
 }
 
+/* Action Buttons Container */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-buttons .primary-btn {
+    flex: 1;
+    margin-top: 0;
+}
+
 /* Download Button Styling */
 .primary-btn {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
@@ -231,6 +243,19 @@ header p {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+}
+
+/* Share Button Styling */
+.share-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: white;
+}
+
+.share-btn:hover {
+    background: linear-gradient(135deg, #128C7E, #25D366);
+    border-color: #25D366;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
 /* ===== Live Preview Panel ===== */

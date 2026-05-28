@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const templateBtns = document.querySelectorAll('.template-btn');
     const cardBgImg = document.getElementById('card-bg-img');
     const downloadBtn = document.getElementById('download-btn');
+    const shareBtn = document.getElementById('share-btn');
     const cardPreview = document.getElementById('card-preview');
 
     const quoteSelect = document.getElementById('quote-select');
@@ -100,4 +101,59 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadBtn.disabled = false;
         });
     });
+
+    // 5. WhatsApp Share Functionality
+    shareBtn.addEventListener('click', () => {
+        const originalText = shareBtn.innerHTML;
+        shareBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
+        shareBtn.disabled = true;
+
+        const config = {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: null,
+            logging: false
+        };
+
+        html2canvas(cardPreview, config).then(canvas => {
+            canvas.toBlob((blob) => {
+                if (!blob) {
+                    throw new Error('Canvas to Blob conversion failed.');
+                }
+                const file = new File([blob], 'vesak-card.png', { type: 'image/png' });
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({
+                        title: 'Happy Vesak!',
+                        text: 'Check out the Vesak greeting card I made!',
+                        files: [file]
+                    }).then(() => {
+                        console.log('Successfully shared');
+                        resetShareBtn(shareBtn, originalText);
+                    }).catch((error) => {
+                        console.error('Error sharing', error);
+                        resetShareBtn(shareBtn, originalText);
+                    });
+                } else {
+                    fallbackShare();
+                    resetShareBtn(shareBtn, originalText);
+                }
+            }, 'image/png', 1.0);
+        }).catch(err => {
+            console.error('Error generating image for share:', err);
+            fallbackShare();
+            resetShareBtn(shareBtn, originalText);
+        });
+    });
+
+    function fallbackShare() {
+        alert('Direct sharing is not supported on this browser. Please download the card and share it manually via WhatsApp Web.');
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Check out the Vesak greeting card I made!'), '_blank');
+    }
+
+    function resetShareBtn(btn, originalText) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
 });
