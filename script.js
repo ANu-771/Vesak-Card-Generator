@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewQuote = document.getElementById('preview-quote');
     const orientationSelect = document.getElementById('orientation-select');
 
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    const fontSelect = document.getElementById('font-select');
+
     // 2. Real-Time Text Updating logic
     toInput.addEventListener('input', (e) => {
         previewTo.textContent = e.target.value || '...';
@@ -65,6 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             cardPreview.classList.remove('landscape');
         }
+    });
+
+    // Font Style & Color Logic
+    colorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+            // Remove active class from all
+            colorSwatches.forEach(s => s.classList.remove('active'));
+            // Add to clicked
+            swatch.classList.add('active');
+            // Update CSS variable
+            cardPreview.style.setProperty('--preview-text-color', swatch.getAttribute('data-color'));
+        });
+    });
+
+    fontSelect.addEventListener('change', (e) => {
+        cardPreview.style.setProperty('--preview-font-family', e.target.value);
     });
 
     // 5. Download Functionality using html2canvas
