@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesak Card Generator</title>
+    
+    <!-- Google Fonts: Poppins for UI, Abhaya Libre for Card Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="app-container">
+        <header>
+            <h1>Vesak Card Generator</h1>
+            <p>Create and download your customized Vesak greeting card.</p>
+        </header>
+
+        <!-- Mobile Warning -->
+        <div class="mobile-warning">
+            <p>💡 For the best download quality, please use "Desktop Site" mode on your mobile browser.</p>
+        </div>
+
+        <main class="main-content">
+            <!-- Controls Panel (Glassmorphism UI) -->
+            <section class="controls-panel glass-panel">
+                <h2>Card Details</h2>
+                
+                <div class="input-group">
+                    <label for="to-input">To:</label>
+                    <input type="text" id="to-input" placeholder="Recipient's Name" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="from-input">From:</label>
+                    <input type="text" id="from-input" placeholder="Your Name" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label for="quote-select">Select Quote:</label>
+                    <select id="quote-select">
+                        <option value="May the teachings of the Buddha guide you and bless you with peace, joy, and prosperity.">English - Peace, Joy, and Prosperity</option>
+                        <option value="ලෝභ, දෝෂ, මෝහ දුරලා, මෙත් සිතින් ලොව දිනන වෙසක් මංගල්යයක් වේවා!">Sinhala - ලෝභ, දෝෂ, මෝහ දුරලා...</option>
+                        <option value="බුදු දහමේ ආලෝකයෙන් ඔබේ සිත් සතන් සුවපත් වන, ශාන්තිය උදාවන සුබ වෙසක් දිනයක් වේවා!">Sinhala - බුදු දහමේ ආලෝකයෙන්...</option>
+                        <option value="custom">Type your own custom quote...</option>
+                    </select>
+                </div>
+                <div class="input-group" id="custom-quote-group" style="display: none; margin-top: -0.5rem;">
+                    <textarea id="custom-quote-input" rows="3" placeholder="Enter your custom wish..."></textarea>
+                </div>
+
+                <h2>Select Template</h2>
+                <div class="template-grid">
+                    <button class="template-btn active" data-bg="assets/istockphoto-2148925188-612x612.jpg" data-label="Template 1">
+                        <img src="assets/istockphoto-2148925188-612x612.jpg" alt="Template 1">
+                    </button>
+                    <button class="template-btn" data-bg="assets/istockphoto-2148925189-612x612.jpg" data-label="Template 2">
+                        <img src="assets/istockphoto-2148925189-612x612.jpg" alt="Template 2">
+                    </button>
+                    <button class="template-btn" data-bg="assets/istockphoto-2148925201-612x612.jpg" data-label="Template 3">
+                        <img src="assets/istockphoto-2148925201-612x612.jpg" alt="Template 3">
+                    </button>
+                    <button class="template-btn" data-bg="assets/istockphoto-2148925211-612x612.jpg" data-label="Template 4">
+                        <img src="assets/istockphoto-2148925211-612x612.jpg" alt="Template 4">
+                    </button>
+                    <button class="template-btn" data-bg="assets/istockphoto-2148925212-612x612.jpg" data-label="Template 5">
+                        <img src="assets/istockphoto-2148925212-612x612.jpg" alt="Template 5">
+                    </button>
+                    <button class="template-btn" data-bg="assets/istockphoto-2148925221-612x612.jpg" data-label="Template 6">
+                        <img src="assets/istockphoto-2148925221-612x612.jpg" alt="Template 6">
+                    </button>
+                </div>
+
+                <button id="download-btn" class="primary-btn">Download Card</button>
+            </section>
+
+            <!-- Live Preview Panel -->
+            <section class="preview-panel">
+                <!-- The actual element that gets captured by html2canvas -->
+                <div class="card-wrapper" id="card-preview">
+                    
+                    <!-- Card Background Image -->
+                    <img id="card-bg-img" src="assets/istockphoto-2148925188-612x612.jpg" alt="Card Background">
+                    
+                    <!-- Dark gradient overlay to ensure text readability against any background -->
+                    <div class="card-overlay"></div>
+                    
+                    <!-- Card Content (Text and UI) -->
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="greeting-title">Happy Vesak</h3>
+                            <div class="lantern-icon">🏮</div>
+                        </div>
+                        <div class="card-body">
+                            <p class="to-text">To: <span id="preview-to">...</span></p>
+                            <p class="wish-text" id="preview-quote">May the teachings of the Buddha guide you and bless you with peace, joy, and prosperity.</p>
+                            <p class="from-text">From: <span id="preview-from">...</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- html2canvas Library (via CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>

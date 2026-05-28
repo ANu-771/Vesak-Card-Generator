@@ -1,0 +1,381 @@
+/* ===== CSS Variables for Theming ===== */
+:root {
+    --primary-color: #fca311;
+    --primary-hover: #ffb703;
+    --text-color: #ffffff;
+    --bg-overlay: rgba(20, 20, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* ===== Resets and Base Styles ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('assets/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dark overlay for the main body background to make the glass UI pop */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Header Styling ===== */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Mobile Warning Message */
+.mobile-warning {
+    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    font-weight: 300;
+}
+
+/* ===== Layout Structure ===== */
+.main-content {
+    display: flex;
+    gap: 3rem;
+    flex: 1;
+    align-items: flex-start;
+}
+
+/* ===== Glassmorphism Panel (Controls) ===== */
+.glass-panel {
+    background: var(--bg-overlay);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--glass-shadow);
+}
+
+.controls-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.controls-panel h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.8rem;
+    color: var(--primary-color);
+}
+
+/* Input Fields Styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group select option {
+    background: #222;
+    color: white;
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(252, 163, 17, 0.3);
+}
+
+.input-group input::placeholder, .input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Template Grid Styling */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.template-btn {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.template-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.template-btn::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 0.75rem;
+    padding: 4px 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.template-btn:hover {
+    transform: translateY(-3px);
+}
+
+.template-btn.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(252, 163, 17, 0.6);
+}
+
+/* Download Button Styling */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: #14213d;
+    border: none;
+    padding: 1.2rem;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(252, 163, 17, 0.4);
+}
+
+.primary-btn:disabled {
+    background: #666;
+    color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===== Live Preview Panel ===== */
+.preview-panel {
+    flex: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Virtual Card Wrapper */
+.card-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    background-color: #222;
+}
+
+#card-bg-img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Dark gradient overlay for text readability against bright backgrounds */
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+    z-index: 2;
+}
+
+/* Actual content inside the card */
+.card-content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Abhaya Libre', serif;
+    color: #fff;
+    /* Subtle text shadows for increased legibility */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.greeting-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #ffd166;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.lantern-icon {
+    font-size: 2.5rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.to-text, .from-text {
+    font-size: 1.8rem;
+    text-align: left;
+    margin: 0;
+}
+
+.to-text span, .from-text span {
+    font-weight: 700;
+    color: #ffd166;
+}
+
+.wish-text {
+    font-size: 1.7rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+    font-style: italic;
+    opacity: 0.95;
+    position: relative;
+    padding: 0 25px;
+    display: inline-block;
+}
+
+.wish-text::before {
+    content: '“';
+    font-size: 4rem;
+    color: var(--primary-color);
+    position: absolute;
+    left: -15px;
+    top: -20px;
+    opacity: 0.5;
+    font-family: 'Poppins', serif;
+}
+
+.wish-text::after {
+    content: '”';
+    font-size: 4rem;
+    color: var(--primary-color);
+    position: absolute;
+    right: -15px;
+    bottom: -45px;
+    opacity: 0.5;
+    font-family: 'Poppins', serif;
+}
+
+/* ===== Responsive Design (Mobile / Tablet) ===== */
+@media (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls-panel {
+        width: 100%;
+        max-width: 500px;
+        position: static;
+    }
+    
+    .preview-panel {
+        width: 100%;
+        order: -1; /* Move preview panel to the top on mobile screens */
+    }
+    
+    .mobile-warning {
+        display: block;
+    }
+    
+    header h1 {
+        font-size: 2.2rem;
+    }
+}
