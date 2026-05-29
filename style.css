@@ -656,7 +656,41 @@ header p {
     opacity: 0.3;
     font-family: serif;
 }
+}
 
+/* ===== Landscape Mode Typography Overrides ===== */
+/* Because landscape width is wider, cqw makes fonts huge. We must scale them down. */
+.card-wrapper.landscape .card-content {
+    padding: 6cqw 8cqw; 
+}
+.card-wrapper.landscape .card-header {
+    gap: 1.5cqw; 
+}
+.card-wrapper.landscape .greeting-title {
+    font-size: 8cqw; 
+}
+.card-wrapper.landscape .lantern-icon {
+    font-size: 6cqw; 
+}
+.card-wrapper.landscape .card-body {
+    gap: 3cqw; 
+}
+.card-wrapper.landscape .to-text, 
+.card-wrapper.landscape .from-text {
+    font-size: 4.5cqw; 
+}
+.card-wrapper.landscape .wish-text {
+    font-size: 4.2cqw; 
+    margin: 2cqw 0;
+}
+.card-wrapper.landscape .wish-text::before {
+    top: -4cqw;
+    font-size: 10cqw;
+}
+.card-wrapper.landscape .wish-text::after {
+    bottom: -6cqw;
+    font-size: 10cqw;
+}
 
 
 /* Footer Styles */
