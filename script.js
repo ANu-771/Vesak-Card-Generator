@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Extract the background URL from the data attribute and apply it to the preview
             const bgImgUrl = btn.getAttribute('data-bg');
-            cardBgImg.src = bgImgUrl;
+            cardBgImg.style.backgroundImage = `url('${bgImgUrl}')`;
         });
     });
 
@@ -103,7 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
             useCORS: true, // Crucial for loading images across different domains
             allowTaint: false,
             backgroundColor: null, 
-            logging: false
+            logging: false,
+            onclone: (clonedDoc) => {
+                const clonedCard = clonedDoc.getElementById('card-preview');
+                // Force a consistent, high-res base dimension off-screen!
+                // Container queries (cqw) will automatically scale up all fonts seamlessly.
+                if (clonedCard.classList.contains('landscape')) {
+                    clonedCard.style.width = '800px';
+                    clonedCard.style.maxWidth = '800px';
+                    clonedCard.style.height = '600px';
+                } else {
+                    clonedCard.style.width = '600px';
+                    clonedCard.style.maxWidth = '600px';
+                    clonedCard.style.height = '800px';
+                }
+            }
         };
 
         // Capture the 'card-preview' div
@@ -152,7 +166,20 @@ document.addEventListener('DOMContentLoaded', () => {
             useCORS: true,
             allowTaint: false,
             backgroundColor: null,
-            logging: false
+            logging: false,
+            onclone: (clonedDoc) => {
+                const clonedCard = clonedDoc.getElementById('card-preview');
+                // Force a consistent, high-res base dimension off-screen
+                if (clonedCard.classList.contains('landscape')) {
+                    clonedCard.style.width = '800px';
+                    clonedCard.style.maxWidth = '800px';
+                    clonedCard.style.height = '600px';
+                } else {
+                    clonedCard.style.width = '600px';
+                    clonedCard.style.maxWidth = '600px';
+                    clonedCard.style.height = '800px';
+                }
+            }
         };
 
         html2canvas(cardPreview, config).then(canvas => {
@@ -166,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     navigator.share({
                         title: 'Happy Vesak!',
-                        text: 'Check out the Vesak greeting card I made!',
+                        text: '',
                         files: [file]
                     }).then(() => {
                         console.log('Successfully shared');
@@ -176,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         resetShareBtn(shareBtn, originalText);
                     });
                 } else {
-                    fallbackShare();
+                    fallbackShare(blob);
                     resetShareBtn(shareBtn, originalText);
                 }
             }, 'image/png', 1.0);
@@ -188,9 +215,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function fallbackShare() {
-        alert('Direct sharing is not supported on this browser. Please download the card and share it manually via WhatsApp Web.');
-        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent('Check out the Vesak greeting card I made!'), '_blank');
+    function fallbackShare(blob = null) {
+        if (blob) {
+            // Automatically download the file for the user since sharing failed
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'vesak-card.png';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            alert('Your browser does not support direct image sharing. We have automatically downloaded the card to your device!\n\nYou can now attach it manually in WhatsApp.');
+        } else {
+            alert('Direct sharing is not supported on this browser. Please download the card and share it manually via WhatsApp Web.');
+        }
+        
+        window.open('https://api.whatsapp.com/send', '_blank');
     }
 
     function resetShareBtn(btn, originalText) {
