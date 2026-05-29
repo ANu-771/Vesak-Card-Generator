@@ -17,20 +17,37 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #0f0c08 url('assets/backgroundupscale.jpg') no-repeat center center fixed;
-    background-size: contain;
+    /* Layer 1: The base background stretched to fill the screen (this will be blurred) */
+    background: url('assets/backgroundupscale.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Dark overlay for the main body background to make the glass UI pop */
+/* Layer 2: The blur filter and the sharp contained image */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    
+    /* Blur the cover background behind this layer */
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    
+    /* Draw the sharp image perfectly fitted in the center */
+    background: url('assets/backgroundupscale.jpg') no-repeat center center;
+    background-size: contain;
+    z-index: -2;
+}
+
+/* Layer 3: Dark overlay to ensure the glass UI and text remain highly readable */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.45);
     z-index: -1;
 }
 
