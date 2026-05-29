@@ -177,6 +177,7 @@ header p {
 /* Color Swatches */
 .color-swatches {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 0.5rem 0;
 }
