@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorSwatches = document.querySelectorAll('.color-swatch');
     const fontSelect = document.getElementById('font-select');
 
+    // 1.5 Setup ResizeObserver to make fonts perfectly responsive without relying on cqw
+    // This fixes severe layout issues in html2canvas and older iOS Safari browsers!
+    const resizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+            // Set base font size variable to exactly 1% of the card's current width
+            const width = entry.contentRect.width;
+            entry.target.style.setProperty('--cw', (width / 100) + 'px');
+        }
+    });
+    resizeObserver.observe(cardPreview);
+
     // 2. Real-Time Text Updating logic
     toInput.addEventListener('input', (e) => {
         previewTo.textContent = e.target.value || '...';
@@ -112,10 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     clonedCard.style.width = '800px';
                     clonedCard.style.maxWidth = '800px';
                     clonedCard.style.height = '600px';
+                    clonedCard.style.setProperty('--cw', '8px'); // 1% of width
                 } else {
                     clonedCard.style.width = '600px';
                     clonedCard.style.maxWidth = '600px';
                     clonedCard.style.height = '800px';
+                    clonedCard.style.setProperty('--cw', '6px'); // 1% of width
                 }
             }
         };
@@ -174,10 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     clonedCard.style.width = '800px';
                     clonedCard.style.maxWidth = '800px';
                     clonedCard.style.height = '600px';
+                    clonedCard.style.setProperty('--cw', '8px'); // 1% of width
                 } else {
                     clonedCard.style.width = '600px';
                     clonedCard.style.maxWidth = '600px';
                     clonedCard.style.height = '800px';
+                    clonedCard.style.setProperty('--cw', '6px'); // 1% of width
                 }
             }
         };

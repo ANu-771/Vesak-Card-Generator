@@ -576,7 +576,7 @@ header p {
     position: relative;
     z-index: 10;
     height: 100%;
-    padding: 10cqw 8cqw;
+    padding: calc(10 * var(--cw)) calc(8 * var(--cw));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -591,11 +591,11 @@ header p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3cqw;
+    gap: calc(3 * var(--cw));
 }
 
 .greeting-title {
-    font-size: 11cqw;
+    font-size: calc(11 * var(--cw));
     font-weight: 700;
     color: #ffd166;
     letter-spacing: 2px;
@@ -603,17 +603,17 @@ header p {
 }
 
 .lantern-icon {
-    font-size: 9cqw;
+    font-size: calc(9 * var(--cw));
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
-    gap: 5cqw;
+    gap: calc(5 * var(--cw));
 }
 
 .to-text, .from-text {
-    font-size: 6.5cqw;
+    font-size: calc(6.5 * var(--cw));
     text-align: left;
     margin: 0;
 }
@@ -624,13 +624,13 @@ header p {
 }
 
 .wish-text {
-    font-size: 6cqw;
+    font-size: calc(6 * var(--cw));
     line-height: 1.5;
-    margin: 4cqw 0;
+    margin: calc(4 * var(--cw)) 0;
     font-style: italic;
     opacity: 0.95;
     position: relative;
-    padding: 0 9cqw;
+    padding: 0 calc(9 * var(--cw));
     display: inline-block;
     color: var(--preview-text-color);
 }
@@ -638,9 +638,9 @@ header p {
 .wish-text::before {
     content: '“';
     position: absolute;
-    top: -6cqw;
-    left: -4cqw;
-    font-size: 15cqw;
+    top: calc(-6 * var(--cw));
+    left: calc(-4 * var(--cw));
+    font-size: calc(15 * var(--cw));
     color: var(--preview-text-color);
     opacity: 0.3;
     font-family: serif;
@@ -649,9 +649,9 @@ header p {
 .wish-text::after {
     content: '”';
     position: absolute;
-    bottom: -11cqw;
-    right: -4cqw;
-    font-size: 15cqw;
+    bottom: calc(-11 * var(--cw));
+    right: calc(-4 * var(--cw));
+    font-size: calc(15 * var(--cw));
     color: var(--preview-text-color);
     opacity: 0.3;
     font-family: serif;
@@ -661,35 +661,35 @@ header p {
 /* ===== Landscape Mode Typography Overrides ===== */
 /* Because landscape width is wider, cqw makes fonts huge. We must scale them down. */
 .card-wrapper.landscape .card-content {
-    padding: 6cqw 8cqw; 
+    padding: calc(6 * var(--cw)) calc(8 * var(--cw)); 
 }
 .card-wrapper.landscape .card-header {
-    gap: 1.5cqw; 
+    gap: calc(1.5 * var(--cw)); 
 }
 .card-wrapper.landscape .greeting-title {
-    font-size: 8cqw; 
+    font-size: calc(8 * var(--cw)); 
 }
 .card-wrapper.landscape .lantern-icon {
-    font-size: 6cqw; 
+    font-size: calc(6 * var(--cw)); 
 }
 .card-wrapper.landscape .card-body {
-    gap: 3cqw; 
+    gap: calc(3 * var(--cw)); 
 }
 .card-wrapper.landscape .to-text, 
 .card-wrapper.landscape .from-text {
-    font-size: 4.5cqw; 
+    font-size: calc(4.5 * var(--cw)); 
 }
 .card-wrapper.landscape .wish-text {
-    font-size: 4.2cqw; 
-    margin: 2cqw 0;
+    font-size: calc(4.2 * var(--cw)); 
+    margin: calc(2 * var(--cw)) 0;
 }
 .card-wrapper.landscape .wish-text::before {
-    top: -4cqw;
-    font-size: 10cqw;
+    top: calc(-4 * var(--cw));
+    font-size: calc(10 * var(--cw));
 }
 .card-wrapper.landscape .wish-text::after {
-    bottom: -6cqw;
-    font-size: 10cqw;
+    bottom: calc(-6 * var(--cw));
+    font-size: calc(10 * var(--cw));
 }
 
 
