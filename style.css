@@ -17,8 +17,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: url('assets/background.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background: #0f0c08 url('assets/backgroundupscale.jpg') no-repeat center center fixed;
+    background-size: contain;
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
